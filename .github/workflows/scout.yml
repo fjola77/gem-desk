@@ -1,0 +1,36 @@
+name: scout
+
+on:
+  schedule:
+    # Minute 17 avoids the crowded top of the hour. 08:17 UTC writes the morning note.
+    - cron: "17 0,4,8,12,16,20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scan
+        run: python gems.py --once
+
+      - name: Commit the log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gems.json
+          if git diff --cached --quiet; then
+            echo "Log unchanged."
+          else
+            git commit -m "Update gem log"
+            git push
+          fi

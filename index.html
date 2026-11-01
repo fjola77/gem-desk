@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gem desk</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <p class="kicker">DexScreener · GoPlus · research only</p>
+  <h1>Gem desk</h1>
+  <p class="lede">A security-first log of low-cap pairs. This page never buys, sells, or connects a wallet, and it is not a signal to trade.</p>
+  <p id="status" class="status">Loading the log…</p>
+</header>
+<main>
+  <section id="morning" aria-labelledby="morning-title"></section>
+  <section id="scorecard" aria-labelledby="score-title"></section>
+  <section id="log" aria-labelledby="log-title"></section>
+</main>
+<script>
+const root = document.querySelector("main");
+
+function text(tag, value, className) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  node.textContent = value == null || value === "" ? "—" : String(value);
+  return node;
+}
+
+function money(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "—";
+  if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+  if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
+  if (n >= 1e3) return "$" + (n / 1e3).toFixed(1) + "k";
+  return "$" + n.toFixed(0);
+}
+
+function multiple(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "—";
+  return n.toFixed(2) + "x";
+}
+
+function when(value) {
+  if (!value) return "not yet";
+  return value.replace("T", " ").replace("Z", " UTC");
+}
+
+function panel(title, id) {
+  const section = document.createElement("section");
+  section.className = "panel";
+  const heading = text("h2", title);
+  heading.id = id;
+  section.append(heading);
+  return section;
+}
+
+function showFatal(message) {
+  root.replaceChildren();
+  const section = panel("Log unavailable", "log-title");
+  section.append(text("p", message));
+  root.append(section);
+}
+
+function renderMorning(data) {
+  const section = panel("Morning top 3", "morning-title");
+  const morning = data.morning;
+  section.append(text("p", morning ? "08:00 UTC · " + when(morning.at) : "Publishes at 08:00 UTC.", "meta"));
+  if (!morning) {
+    section.append(text("p", "The first note has not been published yet.", "empty"));
+    return section;
+  }
+  if (morning.note === "nothing today" || !(morning.gems || []).length) {
+    section.append(text("p", "nothing today", "empty"));
+    return section;
+  }
+  const list = document.createElement("ol");
+  list.className = "cards";
+  for (const gem of morning.gems) {
+    const card = document.createElement("li");
+    card.append(text("h3", gem.symbol || "Unknown"));
+    card.append(text("p", gem.chain || "", "chain"));
+    const contract = text("p", gem.contract || "", "contract");
+    card.append(contract);
+    const facts = document.createElement("dl");
+    for (const [label, value] of [
+      ["Market cap", money(gem.market_cap)],
+      ["Score", gem.score],
+      ["Strongest reason", gem.strongest_reason],
+      ["Red flag", gem.red_flag],
+      ["Buzz", "buzz=no-x-source"],
+    ]) {
+      facts.append(text("dt", label), text("dd", value));
+    }
+    card.append(facts);
+    if (gem.url) {
+      const link = document.createElement("a");
+      link.href = gem.url;
+      link.textContent = "Pair on DexScreener";
+      link.rel = "noreferrer";
+      card.append(link);
+    }
+    list.append(card);
+  }
+  section.append(list);
+  return section;
+}
+
+function renderScorecard(data) {
+  const section = panel("Sunday scorecard", "score-title");
+  const card = data.scorecard;
+  section.append(text("p", card ? "Sunday 08:00 UTC · " + when(card.at) : "Publishes Sunday at 08:00 UTC.", "meta"));
+  if (!card) {
+    section.append(text("p", "Sunday scorecard has not been published yet.", "empty"));
+    return section;
+  }
+  const grid = document.createElement("div");
+  grid.className = "stats";
+  for (const [label, value] of [
+    ["Found", card.found],
+    ["Doubled", card.doubled],
+    ["5x+", card.x5],
+    ["10x+", card.x10],
+    ["No gain", card.no_gain],
+    ["Rugged", card.rugged],
+  ]) {
+    const cell = document.createElement("div");
+    cell.append(text("span", value, "stat"), text("span", label, "label"));
+    grid.append(cell);
+  }
+  section.append(grid);
+  const best = card.best ? card.best.symbol + " " + multiple(card.best.multiple) : "—";
+  const worst = card.worst ? card.worst.symbol + " " + multiple(card.worst.multiple) + (card.worst.rugged ? " rugged" : "") : "—";
+  section.append(text("p", "Best: " + best));
+  section.append(text("p", "Worst: " + worst));
+  const flags = card.loser_flags || [];
+  if (!flags.length) {
+    section.append(text("p", "No loser red flags in this week yet.", "meta"));
+  } else {
+    const list = document.createElement("ul");
+    list.className = "flags";
+    for (const row of flags) {
+      list.append(text("li", row.flag + " (" + row.count + ")"));
+    }
+    section.append(text("h3", "Red flags on losers"));
+    section.append(list);
+  }
+  return section;
+}
+
+function renderLog(data) {
+  const section = panel("Full log", "log-title");
+  const gems = data.gems || [];
+  section.append(text("p", gems.length + " gems kept, including losers. " + (data.kills || []).length + " security kills on record.", "meta"));
+  if (!gems.length) {
+    section.append(text("p", "No gem has scored 70 or above yet.", "empty"));
+  } else {
+    const wrap = document.createElement("div");
+    wrap.className = "table-wrap";
+    const table = document.createElement("table");
+    const head = document.createElement("tr");
+    for (const label of ["Found", "Coin", "Chain", "Contract", "Entry cap", "Score", "Best", "Worst", "Rugged", "Red flag"]) {
+      head.append(text("th", label));
+    }
+    table.append(head);
+    for (const gem of gems) {
+      const row = document.createElement("tr");
+      const coin = gem.url ? document.createElement("a") : text("span", gem.symbol);
+      if (gem.url) {
+        coin.href = gem.url;
+        coin.rel = "noreferrer";
+        coin.textContent = gem.symbol || "—";
+      }
+      const coinCell = document.createElement("td");
+      coinCell.append(coin);
+      row.append(
+        text("td", when(gem.found_at)),
+        coinCell,
+        text("td", gem.chain),
+        text("td", gem.contract),
+        text("td", money(gem.market_cap)),
+        text("td", gem.score),
+        text("td", multiple(gem.best_multiple)),
+        text("td", multiple(gem.worst_multiple)),
+        text("td", gem.rugged ? (gem.rug_reason || "yes") : "no"),
+        text("td", gem.red_flag),
+      );
+      table.append(row);
+    }
+    wrap.append(table);
+    section.append(wrap);
+  }
+
+  const kills = (data.kills || []).slice(-30).reverse();
+  section.append(text("h3", "Latest security kills"));
+  if (!kills.length) {
+    section.append(text("p", "No kills stored yet.", "empty"));
+    return section;
+  }
+  const list = document.createElement("ul");
+  list.className = "kills";
+  for (const kill of kills) {
+    list.append(text("li", (kill.symbol || "unknown") + " · " + kill.chain + " · " + kill.reason + " · " + when(kill.at)));
+  }
+  section.append(list);
+  return section;
+}
+
+function render(data) {
+  const status = document.getElementById("status");
+  status.textContent = "Last scan " + when(data.last_scan) + ". Buzz has no X source, so real-buzz scores 0 (";
+  const buzz = text("span", "buzz=no-x-source");
+  buzz.className = "keep";
+  status.append(buzz, text("span", ")."));
+  const errors = data.last_errors || [];
+  if (errors.length) {
+    status.append(document.createElement("br"));
+    const note = text("span", "Last scan skipped some coins: " + errors.length + " source error" + (errors.length === 1 ? "" : "s") + ".");
+    status.append(note);
+  }
+  root.replaceChildren(renderMorning(data), renderScorecard(data), renderLog(data));
+}
+
+fetch("data/gems.json", { cache: "no-store" })
+  .then((response) => {
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    return response.json();
+  })
+  .then(render)
+  .catch(() => showFatal("The log could not be loaded. Run a scan, then reload this page."));
+</script>
+</body>
+</html>
