@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-03T02:23:52Z",
+  "last_scan": "2026-11-03T11:58:42Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -32,6 +32,20 @@
       "contract": "2Nyb2GXVoXM42hVQxJg5RppTbiN5SCZFL4LtZVVDpump",
       "symbol": "Peekhole",
       "reason": "lp not verified"
+    },
+    {
+      "at": "2026-11-03T11:58:42Z",
+      "chain": "solana",
+      "contract": "4KxtNWc5XTL3cuyc8PJMchqB6RYggvEFeMub727GBAGS",
+      "symbol": "SALVOR",
+      "reason": "lp not verified"
+    },
+    {
+      "at": "2026-11-03T11:58:42Z",
+      "chain": "solana",
+      "contract": "D42TjMjz5H7toPu5md5KBXreZkCSdZMEfLQwmBhJXvb1",
+      "symbol": "Pok\u00e9mon",
+      "reason": "lp not locked or burned"
     }
   ],
   "reviewed": [
