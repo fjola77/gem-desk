@@ -65,6 +65,64 @@ h2 {
   font-weight: 500;
 }
 
+.rate-form {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.7rem;
+}
+
+.rate-form label {
+  font: 0.78rem/1.4 ui-monospace, Consolas, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+textarea {
+  width: 100%;
+  min-height: 5.4rem;
+  padding: 0.75rem 0.8rem;
+  color: var(--ink);
+  background: #14180f;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font: 0.95rem/1.45 ui-monospace, Consolas, monospace;
+  resize: vertical;
+}
+
+button {
+  justify-self: start;
+  padding: 0.55rem 1.1rem;
+  color: #12140e;
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  font: 0.95rem/1 ui-monospace, Consolas, monospace;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.55; cursor: wait; }
+
+.results { display: grid; gap: 0.8rem; margin-top: 0.9rem; }
+
+.result {
+  padding: 0.9rem;
+  background: #14180f;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.verdict {
+  margin: 0.15rem 0 0.4rem;
+  font: 1.25rem/1.2 ui-monospace, Consolas, monospace;
+}
+
+.verdict.gem { color: var(--ok); }
+.verdict.nope { color: var(--bad); }
+
+.reasons { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+.reasons li { margin: 0.15rem 0; }
+
 h3 { margin: 0.2rem 0; font-size: 1.25rem; font-weight: 500; }
 
 .cards {

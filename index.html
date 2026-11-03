@@ -10,16 +10,26 @@
 <header class="top">
   <p class="kicker">DexScreener · GoPlus · research only</p>
   <h1>Gem desk</h1>
-  <p class="lede">A security-first log of low-cap pairs. This page never buys, sells, or connects a wallet, and it is not a signal to trade.</p>
+  <p class="lede">Type any coin that is listed on DexScreener and the desk rates it. This page never buys, sells, or connects a wallet, and it is not a signal to trade.</p>
   <p id="status" class="status">Loading the log…</p>
 </header>
 <main>
-  <section id="morning" aria-labelledby="morning-title"></section>
-  <section id="scorecard" aria-labelledby="score-title"></section>
-  <section id="log" aria-labelledby="log-title"></section>
+  <section id="lookup" class="panel" aria-labelledby="lookup-title">
+    <h2 id="lookup-title">Rate a coin</h2>
+    <p class="meta">Ticker or contract address. Use a comma or a new line for more than one. Any chain on DexScreener can be looked up. A gem still has to pass the security rules.</p>
+    <form id="rate-form" class="rate-form">
+      <label for="coins">Coins</label>
+      <textarea id="coins" name="coins" rows="3" placeholder="BONK, PEPE, or a contract address" required></textarea>
+      <button type="submit">Rate</button>
+    </form>
+    <p id="rate-status" class="meta" aria-live="polite"></p>
+    <div id="rate-results"></div>
+  </section>
+  <div id="desk"></div>
 </main>
+<script src="rate.js"></script>
 <script>
-const root = document.querySelector("main");
+const root = document.getElementById("desk");
 
 function text(tag, value, className) {
   const node = document.createElement(tag);
