@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-04T00:38:53Z",
+  "last_scan": "2026-11-04T12:13:21Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -46,15 +46,22 @@
       "contract": "D42TjMjz5H7toPu5md5KBXreZkCSdZMEfLQwmBhJXvb1",
       "symbol": "Pok\u00e9mon",
       "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-04T12:13:21Z",
+      "chain": "solana",
+      "contract": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
+      "symbol": "SI276",
+      "reason": "lp not verified"
     }
   ],
   "reviewed": [
     {
       "chain": "solana",
       "contract": "EaxAUcXxNnVwcqm2BBocbows7D1XVY2Q63V38NEypump",
-      "at": "2026-11-01T20:32:18Z",
-      "score": 48,
-      "liquidity_usd": 156669.1
+      "at": "2026-11-04T12:13:21Z",
+      "score": 51,
+      "liquidity_usd": 163989.79
     }
   ]
 }
