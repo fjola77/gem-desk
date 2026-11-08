@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-08T15:17:09Z",
+  "last_scan": "2026-11-08T20:30:31Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -67,6 +67,13 @@
       "contract": "A75Xx6SeftAmWduv9KGwb2GCjXUAhxozcCUCys9jpump",
       "symbol": "HELL",
       "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-08T20:30:31Z",
+      "chain": "bsc",
+      "contract": "0xEd99445d72787Adb627cD8588586984DF548CD2F",
+      "symbol": "UP",
+      "reason": "top 10 hold 98%"
     }
   ],
   "reviewed": [
