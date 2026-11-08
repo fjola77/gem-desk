@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-08T06:08:57Z",
+  "last_scan": "2026-11-08T15:17:09Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -53,6 +53,20 @@
       "contract": "HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
       "symbol": "SI276",
       "reason": "lp not verified"
+    },
+    {
+      "at": "2026-11-08T15:17:09Z",
+      "chain": "solana",
+      "contract": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+      "symbol": "CBUCKS",
+      "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-08T15:17:09Z",
+      "chain": "solana",
+      "contract": "A75Xx6SeftAmWduv9KGwb2GCjXUAhxozcCUCys9jpump",
+      "symbol": "HELL",
+      "reason": "lp not locked or burned"
     }
   ],
   "reviewed": [
