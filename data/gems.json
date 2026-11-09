@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-09T06:42:57Z",
+  "last_scan": "2026-11-09T18:51:26Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -74,6 +74,13 @@
       "contract": "0xEd99445d72787Adb627cD8588586984DF548CD2F",
       "symbol": "UP",
       "reason": "top 10 hold 98%"
+    },
+    {
+      "at": "2026-11-09T18:51:26Z",
+      "chain": "solana",
+      "contract": "5yC9BM8KUsJTPbWPLfA2N8qH1s9V8DQ3Vcw1G6Jdpump",
+      "symbol": "AgenC",
+      "reason": "lp not locked or burned"
     }
   ],
   "reviewed": [
