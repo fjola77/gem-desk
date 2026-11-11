@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-10T21:49:22Z",
+  "last_scan": "2026-11-11T06:33:21Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -80,6 +80,13 @@
       "chain": "solana",
       "contract": "5yC9BM8KUsJTPbWPLfA2N8qH1s9V8DQ3Vcw1G6Jdpump",
       "symbol": "AgenC",
+      "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-11T06:33:21Z",
+      "chain": "solana",
+      "contract": "8ryRQD6jWfxnSdvvVbQ8Tzwo1NgGP7w1X1nQPpb4pump",
+      "symbol": "meowl",
       "reason": "lp not locked or burned"
     }
   ],
