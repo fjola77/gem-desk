@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-17T02:57:24Z",
+  "last_scan": "2026-11-17T13:31:19Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -137,6 +137,13 @@
       "contract": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
       "symbol": "CBUCKS",
       "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-17T13:31:19Z",
+      "chain": "solana",
+      "contract": "9QT8K685Hrae4k11dhGXirdtpfAaimExtyfwt8cPpump",
+      "symbol": "DIGS",
+      "reason": "lp not verified"
     }
   ],
   "reviewed": [
