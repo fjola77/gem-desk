@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-24T02:55:27Z",
+  "last_scan": "2026-11-24T14:55:16Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -185,6 +185,20 @@
       "chain": "solana",
       "contract": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
       "symbol": "BRUH",
+      "reason": "lp not verified"
+    },
+    {
+      "at": "2026-11-24T14:55:16Z",
+      "chain": "bsc",
+      "contract": "0x4165b28775635D74F772b92e5aC93D6C58888888",
+      "symbol": "W8",
+      "reason": "lp not locked or burned"
+    },
+    {
+      "at": "2026-11-24T14:55:16Z",
+      "chain": "solana",
+      "contract": "4npJ3avxnGhCzKbWQpLrQXAHsjWzKr4JqBsbu5Fspump",
+      "symbol": "cateball",
       "reason": "lp not verified"
     }
   ],
