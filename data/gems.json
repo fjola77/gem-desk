@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-24T14:55:16Z",
+  "last_scan": "2026-11-25T00:48:42Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -200,6 +200,13 @@
       "contract": "4npJ3avxnGhCzKbWQpLrQXAHsjWzKr4JqBsbu5Fspump",
       "symbol": "cateball",
       "reason": "lp not verified"
+    },
+    {
+      "at": "2026-11-25T00:48:42Z",
+      "chain": "bsc",
+      "contract": "0xE01A317003621D634B6E5fDFfF451f8DB4087777",
+      "symbol": "\u7f8a\u7f8a",
+      "reason": "unverified"
     }
   ],
   "reviewed": [
