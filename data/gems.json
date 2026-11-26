@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-11-26T00:26:20Z",
+  "last_scan": "2026-11-26T13:57:11Z",
   "last_errors": [],
   "morning": null,
   "scorecard": null,
@@ -207,6 +207,13 @@
       "contract": "0xE01A317003621D634B6E5fDFfF451f8DB4087777",
       "symbol": "\u7f8a\u7f8a",
       "reason": "unverified"
+    },
+    {
+      "at": "2026-11-26T13:57:11Z",
+      "chain": "solana",
+      "contract": "9QT8K685Hrae4k11dhGXirdtpfAaimExtyfwt8cPpump",
+      "symbol": "DIGS",
+      "reason": "lp not verified"
     }
   ],
   "reviewed": [
